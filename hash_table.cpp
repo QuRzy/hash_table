@@ -15,6 +15,13 @@ public:
     {
         vec.resize(16);
     }
+    virtual ~hash_table() 
+    {
+        for (auto& v : vec)
+        {
+            v.clear();
+        }
+    }
     void add(const Key& key, const Data& data)
     {
         vec[hash<Key>{}(key) % 16].push_back({ key, data });
