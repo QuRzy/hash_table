@@ -38,7 +38,7 @@ public:
     }
     Data& operator[](const Key& key)
     {
-        for (auto v : vec[hash<Key>{}(key) % 16])
+        for (auto& v : vec[hash<Key>{}(key) % 16])
         {
             if (v.first == key)
                 return v.second;
