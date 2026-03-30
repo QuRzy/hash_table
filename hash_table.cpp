@@ -64,6 +64,17 @@ public:
     }
     void remove(const Key& key)
     {
-        //
+        for (auto &&it = vec[hash<Key>{}(key) % 16].begin(); it != vec[hash<Key>{}(key) % 16].end();)
+        {
+            if (it->first == key)
+            {
+                vec[hash<Key>{}(key) % 16].erase(it);
+                return;
+            }
+            else
+            {
+                ++it;
+            }
+        }
     }
 };
