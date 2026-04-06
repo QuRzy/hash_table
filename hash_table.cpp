@@ -24,6 +24,14 @@ public:
     }
     void add(const Key& key, const Data& data)
     {
+		for (auto& v : vec[hash<Key>{}(key) % 16])
+        {
+            if (v.first == key)
+            {
+                v.second = data;
+                return;
+            }
+        }
         vec[hash<Key>{}(key) % 16].push_back({ key, data });
     }
     Data get(const Key& key) const
